@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const Tasks_1 = __importDefault(require("../routes/Tasks"));
 const User_1 = __importDefault(require("../routes/User"));
 const Tasks_2 = require("./Tasks");
@@ -37,7 +38,10 @@ class Server {
         this.app.use('/api/Users', User_1.default);
     }
     middleware() {
+        //paseo body
         this.app.use(express_1.default.json());
+        //cors
+        this.app.use((0, cors_1.default)());
     }
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {

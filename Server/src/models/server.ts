@@ -1,8 +1,10 @@
 import express from 'express';
+import cors from 'cors';
 import routesTasks from '../routes/Tasks';
 import routesUser from '../routes/User';
 import { tasks } from './Tasks';
 import { User } from './User';
+
 
 export class Server{
 
@@ -27,7 +29,11 @@ export class Server{
         this.app.use('/api/Users', routesUser);
     }
     middleware(){
+        //paseo body
         this.app.use(express.json());
+
+        //cors
+        this.app.use(cors());
     }
     async dbConnect(){
         try{

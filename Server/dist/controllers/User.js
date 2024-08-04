@@ -22,7 +22,7 @@ const newUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield User_1.User.findOne({ where: { username: username } });
     if (user) {
         return res.status(400).json({
-            msg: `ya existe con usuario con el nombre ${username}`
+            msg: `ya existe un usuario con el nombre '${username}'`
         });
     }
     const hashedPassword = yield bcrypt_1.default.hash(password, 10);
@@ -64,7 +64,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const token = jsonwebtoken_1.default.sign({
         username: username
     }, process.env.SECRET_KEY || 'pepito123', {
-        expiresIn: '50000'
+        expiresIn: '500000'
     });
     res.json({
         token

@@ -12,7 +12,7 @@ export const newUser = async (req: Request, res: Response) => {
 
     if(user){
         return res.status(400).json({
-            msg: `ya existe con usuario con el nombre ${username}`
+            msg: `ya existe un usuario con el nombre '${username}'`
         })
     }
     
@@ -59,7 +59,7 @@ export const loginUser = async (req: Request, res: Response) => {
     const token = jwt.sign({
         username: username
     }, process.env.SECRET_KEY || 'pepito123', {
-        expiresIn: '50000'
+        expiresIn: '500000'
     });
 
     res.json({
